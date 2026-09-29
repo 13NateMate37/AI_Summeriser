@@ -22,16 +22,20 @@ if st.button("Analyse with AI"):
 # Sending the input to Gemma & storing the response into a variable
 model_response = chat(
     model="gemma4:26b",
-    messages=[
-        {"role": "user",
-         "content": f"""Analyse the following operations or log text.
-         Identify:
-         1. The ley problem
-         2. Th urgency level
-         3. Recommended action
-         Text:
-         {user_input_text}
-        """
+   messages=[
+    {
+        "role": "user",
+        "content": f"""
+            Analyse the following operations or log text.
+
+            Identify:
+            1. The key problem
+            2. The urgency level
+            3. Recommended action
+
+            Text:
+            {user_input_text}
+            """
         }
     ]
 )
