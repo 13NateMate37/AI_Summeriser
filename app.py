@@ -7,7 +7,7 @@ from ollama import chat
 st.title("AI Operations and Log Summeriser")
 
 # Details in a caption
-st.caption("Using Ollama to run a local model gemma4:26b")
+st.caption("Using Ollama to run a local model qwen3:8b")
 
 # Storing user input into a text box, into a callable vairable 
 user_input_text = st.text_area(
@@ -21,7 +21,7 @@ if st.button("Analyse with AI"):
 
 # Sending the input to Gemma & storing the response into a variable
 model_response = chat(
-    model="gemma4:26b",
+    model="qwen3:8b",
    messages=[
     {
         "role": "user",
@@ -42,3 +42,4 @@ model_response = chat(
 
 # 'Print' the response to the webpage
 st.write(model_response.message.content)
+
