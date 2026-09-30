@@ -4,7 +4,7 @@ from ollama import chat
 
 
 # Set a title
-st.title("AI Operations and Log Summeriser")
+st.title("AI Issue Analyser")
 
 # Details in a caption
 st.caption("Using Ollama to run a local model qwen3:8b")
@@ -15,31 +15,36 @@ user_input_text = st.text_area(
     height=200
 )
 
+# Header above the model response
+st.subheader("Qwen's Output")
+
 # Creating a button, 'if' means the code is only run when clicked 
 if st.button("Analyse with AI"):
-    st.write(user_input_text)
+    if not user_input_text.strip():
+        st.warning("Paste text for analysis first")
+    else:
+        with st.spinner("Analysing..."):
+            # Sending the input to Qwen & storing the response into a variable
+            model_response = chat(
+                model="qwen3:8b",
+            messages=[
+                {
+                    "role": "user",
+                    "content": f"""
+                        Analyse the following issue.
 
-# Sending the input to Gemma & storing the response into a variable
-model_response = chat(
-    model="qwen3:8b",
-   messages=[
-    {
-        "role": "user",
-        "content": f"""
-            Analyse the following operations or log text.
+                        Identify:
+                        1. The key problem
+                        2. The urgency level
+                        3. Recommended action
 
-            Identify:
-            1. The key problem
-            2. The urgency level
-            3. Recommended action
+                        Text:
+                        {user_input_text}
+                        """
+                    }
+                ],
+            )
+        # 'Print' the response to the webpage
+        st.write(model_response.message.content)
 
-            Text:
-            {user_input_text}
-            """
-        }
-    ]
-)
-
-# 'Print' the response to the webpage
-st.write(model_response.message.content)
 
