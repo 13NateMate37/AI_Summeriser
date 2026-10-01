@@ -1,4 +1,4 @@
-# AI_Summeriser
+# AI_Summariser
 A beginner project, semi guided, instructions and rationale provided by ideation with AI
 
 Having been thrown up quite quickly for simple functionality, I will begin to develop it further as I tinker with it and gain insight through activity. 
